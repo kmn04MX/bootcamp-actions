@@ -6,9 +6,12 @@ jobs:
   first_jobs:
     runs-on: ubuntu-latest
 
+    env:
+      NAME: CodigoFacilito
+
     steps:
       - name: Hola mundo
-        run: echo "Hola mundo"
+        run: echo "Hola mundo $NAME"
   
   secon_job:
     if: ${{github.ref == 'refs/heads/main'}}
