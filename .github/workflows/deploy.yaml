@@ -9,26 +9,15 @@ jobs:
     outputs:
       salida: "${{steps.step_1.outputs.my_variable}}"
 
-    env:
-      NAME: CodigoFacilito
-
     steps:
       - name: working dir
-        id: step_1
-        run: echo "my_variable=Hola mundo" >> $GITHUB_OUTPUT
+        run: |
+          echo "Archivo prueba, hola" >> test.log
+      - name: subir artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivo-test
+          path: test.log
 
-      - name: Obtener mensaje
-        run: echo "${{steps.step_1.outputs.my_variable}}"
-  
-  secon_job:
-    needs: first_jobs
-    runs-on: ubuntu-latest
 
-    env:
-      SALIDA: ${{needs.first_jobs.outputs.salida}}
-
-    steps:
-      - name: Hola mundo
-        run: echo "Hola mundo ${{github.ref}}"
-      - name: Variable salida
-        run: echo "$SALIDA"
+    
