@@ -11,13 +11,7 @@ jobs:
 
     steps:
       - name: working dir
-        run: la -la
-
-      - name: working dir
-        uses: actions/checkout@v4
-
-      - name: working dir after action
-        run: ls -la
+        run: echo $GITHUB_OUTPUT
   
   secon_job:
     if: ${{github.ref == 'refs/heads/main'}}
